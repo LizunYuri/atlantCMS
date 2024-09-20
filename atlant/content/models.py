@@ -110,3 +110,28 @@ class BlogModel(models.Model):
         verbose_name = 'Статья'
         verbose_name_plural = 'Статьи'
         ordering = ['-pub_date']
+
+
+class ReviewsModel(models.Model):
+    name = models.CharField(max_length=100,
+                             verbose_name='Имя',
+                             help_text='Не больше 100 символов')
+    pub_date = models.DateField(default=timezone.now,
+                                verbose_name='Дата публикации',
+                                help_text='Дата публикации',
+                                null=True)
+    publish = models.BooleanField(verbose_name='Опубликовано',
+                                  default=False,
+                                  help_text='Отметка публикации на сайте')
+    text = models.TextField(verbose_name='Текста',
+                            help_text='Полный текст статьи. Для разбивки на параграфы используется одинарный перенос')
+
+    def __str__(self):
+        return self.name
+    
+
+    class Meta:
+        verbose_name = 'Отзыв'
+        verbose_name_plural = 'Отзывы игроков'
+        ordering = ['-pub_date']
+

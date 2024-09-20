@@ -13,6 +13,9 @@
     <link rel="icon" href="{% static 'favicons/favicon.ico' %}">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
+    <script>
+        window.submitUrl = "{% url 'submit_client_form' %}";
+    </script>
     {% for seo in seo %}
         <meta name="description" content="{{ seo.description }}">
         <meta name="keywords" content="{{ seo.keywords }}">
@@ -24,6 +27,459 @@
     {% endfor %}
 </head>
 <body>
-    
-</body>
+    <header class="header" id="header">
+        <div class="container header-container">
+               <a  class="logo-main-header cycle-objects-img" href="#">
+                    <img src="{% static 'img/logotype2.png' %}" alt="logo">
+                </a>
+            <nav>
+                <ul class="header-list">
+                    <li class="header-list-item header-effect block item-animation-objects" ><a href="#about">О нас</a></li>
+                    <li class="header-list-item header-effect block item-animation-objects"><a href="#schedule">Расписание</a></li>
+                    <li class="header-list-item header-effect block item-animation-objects"><a href="#blog">Новости</a></li>
+                    <li class="header-list-item header-effect block item-animation-objects"><a href="#reviews">Отзывы</a></li>
+                    <li class="header-list-item header-effect block item-animation-objects"><a href="#trainer">Контакты</a></li>
+                </ul>
+            </nav>
+            <div class="logotype-address">
+                <button class="custom-btn-training" onclick="openModalWindow()">
+                    <p>Записаться<br> на тренировку</p>
+                </button>
+                <div class="logotype-address-block">
+                    {% for company in company %}
+                        <a class="header-list-item" href="tel:{{ company.phone }}">{{ company.phone }}</a>
+                        <a class="header-list-item" href="mailto:{{ company.e_mail }}">{{ company.e_mail }}</a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="container mobil-visible">
+                <div onclick="burgerClick()"  class="burger">
+                    <div class="toggle toggle-first" id="toggle-first"></div>
+                    <div class="toggle toggle-center"></div>
+                    <div class="toggle toggle-last"></div>
+            </div>
 
+        </div>
+        
+        <div class="body-nav">
+                <div class="body-nav-menu">
+                    <nav class="nav-animation">
+                        <ul>
+                            <li class='body-nav-menu-list item-animation-objects'><a href="#about">О нас</a></li>
+                            <li class='body-nav-menu-list item-animation-objects'><a href="#schedule">Расписание</a></li> 
+                            <li class='body-nav-menu-list item-animation-objects'><a href="#blog">Новости</a></li>
+                            <li class='body-nav-menu-list item-animation-objects'><a href="#reviews">Отзывы</a></li>
+                            <li class='body-nav-menu-list item-animation-objects'><a href="#trainer">Контакты</a></li>
+                        </ul>
+                    </nav>
+                    <div class="header-list logotype-mobil nav-animation">
+                        <button class="custom-btn-training" onclick="openModalWindow()">
+                            <p>Записаться<br> на тренировку</p>
+                        </button>
+                    </div> 
+                </div>
+        </div>
+    </header>
+    <main>
+        <section class="main-screen">
+            <div class="main-screen-bg">
+                <div class="container main-screen-container">
+                    <div class="row  main-screen-content">
+                        <div class="col-xl-6 col-lg-12 main-screen-right">
+                            {% for news in firstNews %}
+                                <div class="main-screen-right-card card-child cycle-objects-card">
+                                    <div class="left"></div>
+                                    <div class="right">
+                                        <h3>{{ news.title }}</h3>
+                                        <p>{{ news.description }}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <div class="col-xl-6 col-lg-12 main-screen-left">
+                            <div class="logo-main cycle-objects-img">
+                                <img src="{% static 'img/logotype2.png' %}" alt="logo">
+                            </div>
+                            <h1 class="cycle-objects-subtitle">Детский футбольный клуб</h1>
+                            <h2 class="cycle-objects-title">Атлант</h2>
+                            <div class="custom-modal-btn">
+                                <button onclick="openModalWindow()">
+                                    <p><span>GO! </span>на тренировку</p>
+                                </button>
+                            </div>
+                            <div class="footer-icons">
+                                {% for company in company %}
+                                    <a href="{{ company.vk }}">
+                                        <i class="fa-brands fa-vk"></i>
+                                    </a>
+                                    <a href="{{ company.telegramm }}">
+                                        <i class="fa-brands fa-telegram"></i>
+                                    </a>
+                                    <a href="{{ company.whatsapp }}">
+                                        <i class="fa-brands fa-whatsapp"></i>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="about" id="about">
+            <div class="container about-container">
+                <div class="about-content">
+                    <h4 class="page-subtitle cycle-objects-subtitle">О нас</h4>
+                    <h5 class="page-title cycle-objects-title">Lorem ipsum dolor sit amet3.</h5>
+                    {% for about in abouts %}
+                        <div class="about-content-card item-animation-objects-express">
+                            <div class="about-content-text">
+                                <h5 class="cycle-objects-title">{{ about.title }}</h5>
+                                <p>{{ about.text }}</p>
+                            </div>
+                            <div class="about-content-img  first">
+                                <img src="{{ about.get_image_url }}" alt="{{ about.title }}">
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+        <section class="schedule" id="schedule">
+            <div class="container schedule-container">
+                <h2 class="page-subtitle cycle-objects-title">Расписание</h2>
+                <h3 class="page-title cycle-objects-title">Встретимся на поле</h3>
+                <div class="schedule-content">
+                    <table class="tables">
+                        <thead>
+                            <tr class="tables-thead">
+                                <th class="tables-th">Понедельник</th>
+                                <th class="tables-th">Вторник</th>
+                                <th class="tables-th">Среда</th>
+                                <th class="tables-th">Четверг</th>
+                                <th class="tables-th">Пятница</th>
+                                <th class="tables-th">Суббота</th>
+                                <th class="tables-th">Воскресенье</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="tables-tbody">
+                                <td class="tables-th-body">
+                                    <span class="tables-mobil">Понедельник</span>
+                                    {% for item in schedule_by_weekday.1 %}
+                                        <p><span>{{ item.age }}</span></p>
+                                        <p>с {{ item.start_time }} до {{ item.end_time }}</p>
+                                    {% empty %}
+                                        <p></p>
+                                    {% endfor %}
+                                </td>
+                                <td class="tables-th-body">
+                                    <span class="tables-mobil">Вторник</span>
+                                    {% for item in schedule_by_weekday.2 %}
+                                        <p><span>{{ item.age }}</span></p>
+                                        <p>с {{ item.start_time }} до {{ item.end_time }}</p>
+                                    {% empty %}
+                                        <p></p>
+                                    {% endfor %}
+                                </td>
+                                <td class="tables-th-body">
+                                    <span class="tables-mobil">Среда</span>
+                                    {% for item in schedule_by_weekday.3 %}
+                                        <p><span>{{ item.age }}</span></p>
+                                        <p>с {{ item.start_time }} до {{ item.end_time }}</p>
+                                    {% empty %}
+                                        <p></p>
+                                    {% endfor %}
+                                </td>
+                                <td class="tables-th-body">
+                                    <span class="tables-mobil">Четверг</span>
+                                    {% for item in schedule_by_weekday.4 %}
+                                        <p><span>{{ item.age }}</span></p>
+                                        <p>с {{ item.start_time }} до {{ item.end_time }}</p>
+                                    {% empty %}
+                                        <p></p>
+                                    {% endfor %}
+                                </td>
+                                <td class="tables-th-body">
+                                    <span class="tables-mobil">Пятница</span>
+                                    {% for item in schedule_by_weekday.5 %}
+                                        <p><span>{{ item.age }}</span></p>
+                                        <p>с {{ item.start_time }} до {{ item.end_time }}</p>
+                                    {% empty %}
+                                        <p></p>
+                                    {% endfor %}
+                                </td>
+                                <td class="tables-th-body">
+                                    <span class="tables-mobil">Суббота</span>
+                                    {% for item in schedule_by_weekday.6 %}
+                                        <p><span>{{ item.age }}</span></p>
+                                        <p>с {{ item.start_time }} до {{ item.end_time }}</p>
+                                    {% empty %}
+                                        <p></p>
+                                    {% endfor %}
+                                </td>
+                                <td class="tables-th-body">
+                                    <span class="tables-mobil">Воскресенье</span>
+                                    {% for item in schedule_by_weekday.7 %}
+                                        <p><span>{{ item.age }}</span></p>
+                                        <p>с {{ item.start_time }} до {{ item.end_time }}</p>
+                                    {% empty %}
+                                        <p></p>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+        </section>
+        <section class="blog" id="blog">
+            <div class="blog-bg">
+                <div class="container blog-container">
+                    <h2 class="page-subtitle  cycle-objects-title">Блог</h2>
+                    <h3 class="page-title  cycle-objects-title">Новости с поля</h3>
+                    <div class="blog-content">
+                        {% for blog in blogs %}
+                            <a href="#" class="open-modal-blog" data-pk="{{ blog.pk }}">
+                                <div class="blog-content-card">
+                                    <div class="blog-content-card-img">
+                                        <img src="{{ blog.get_image_url }}" alt="{{ blog.title }}">
+                                    </div>
+                                    <div class="blog-content-card-text">
+                                        <div class="date">
+                                            <p>{{ blog.pub_date }}</p>
+                                            <div class="line"></div>
+                                            <p>{{ blog.theme }}</p>
+                                        </div>
+                                        <h6>{{ blog.title }}</h6>
+                                        <p>{{ blog.text }}</p>
+                                    </div>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="review" id="reviews">
+            <div class="container review-container">
+                <h2 class="page-subtitle  cycle-objects-title">Отзывы</h2>
+                <h3 class="page-title  cycle-objects-title">Что говорят о нас ученики</h3>
+                <div class="review-cards">
+                    <div class="review-cards"  id="review-card-wrapper">
+                        {% for review in reviews %}
+                            <div class="review-card cycle-objects-card">
+                                <div class="review-card-text">
+                                    <p>{{ review.pub_date }}</p>
+                                    <p><span>{{ review.name }}></span></p>
+                                </div>
+                                <div class="review-card-footer">
+                                    <div class="review-card-user ">
+                                        <div class="review-card-user-name">
+                                            
+                                            <p>{{ review.text }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="review-card-decor">
+                                        <div class="review-card-decor-left"></div>
+                                        <div class="review-card-decor-left"></div>
+                                    </div>
+                                </div>
+                            </div>  
+                        {% endfor %}                          
+                    </div>
+                </div>
+                <button onclick="openModalWindowReview()" class="custom-btn">Оставить отзыв</button>
+            </div>
+        </section>
+        <section class="trainer" id="trainer">
+            <div class="container trainer-container">
+                <h2 class="page-subtitle cycle-objects-title">контакты</h2>
+                <h3 class="page-title cycle-objects-title">Ждем на тренировку</h3>
+                <div class="trainer-content">
+                    <div class="trainer-content-card item-animation-objects-express">
+                        <div class="trainer-content-card-img">
+                            <script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A59e646de3144c8ebc4c459b71f56caa9f166fc2850f7ed4b6ddc0dbf863763b3&amp;width=100%25&amp;height=490&amp;lang=ru_RU&amp;scroll=true"></script>
+                            <img class="logotype" src="{% static 'img/logotype2.png' %}" alt="">
+                        </div>
+                        <div class="trainer-content-card-text">
+                            {% for company in company %}
+                                <h5>{{ company.address }}</h5>
+                                <a class="" href="tel:{{ company.phone }}">Телефон: {{ company.phone }}</a>
+                                <a class="" href="mailto:{{company.email}}">e-mail: {{ company.email }}</a> 
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="blog-detail" id="blog-detail-modal">
+        <div class="content">
+            <div  style="width: 100%; height: 100%; display: flex;" id="blog-detail">
+            
+            </div>
+            <button class="blog-detail-btn">закрыть</button>
+        </div>
+        
+    </div>
+
+    <div class="custom-modal modal-none" id="custom-modal">
+        <div class="body">
+            <p class="closed">+</p>
+            <form class="modal-form" id="client-form" action="#" method="POST">
+                {% csrf_token %}
+            <div class="title">
+                <h5 class="modal-title">Записаться на тренировку</h5>
+            </div>
+                <div class="modal-form-input">
+                    <label for="userName">Ваше имя</label>
+                    <input placeholder="напр. Иван Иванович" type="text" name="name" id="name" required>
+                </div>
+                <div class="modal-form-input">
+                    <label for="userPhone">Номер для связи</label>
+                    <input placeholder="+7(9xx)xxx-xx-xx" type="text" name="phone" id='phone'>
+                </div>
+                <div class="modal-form-input">
+                    <label for="userSity">Адрес электронной почты</label>
+                    <input placeholder="напр. info@atlant.ru" type="email" name="email" id="email">
+                </div>
+                <div class="modal-form-input">
+                    <input type="submit" placeholder="Отправить">
+                </div>
+                
+            </form>
+            <div class="success-message" id="success-message" style="display:flex;">
+                
+                <p class="page-subtitle">Не хотите ждать пока мы Вам перезвоним?</p>
+                {% for company in company %}
+                <p class="page-subtitle">присоединяйтесь к нашм в ВК и телеграмм</p>
+                    <div class="footer-icons">
+                        <a href="{{ company.vk }}">
+                            <i class="fa-brands fa-vk"></i>
+                        </a>
+                        <a href="{{ company.telegramm }}">
+                            <i class="fa-brands fa-telegram"></i>
+                        </a>
+                        <a href="{{ company.whatsapp }}">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div class="custom-modal modal-none" id="custom-modal-review">
+        <div class="body">
+            <p class="closed-review">+</p>
+            <form class="modal-form" id="review-form" action="#" data-action-url="#">
+                
+            <div class="title">
+                <h5 class="modal-title">Оставить отзыв</h5>
+            </div>
+                <div class="modal-form-input">
+                    <label for="userName">Ваше имя</label>
+                    <input placeholder="напр. Иван Иванович" type="text" name="userName" id="userName" required>
+                </div>
+                <div class="modal-form-input">
+                    <label for="userPhone">Ваш отзыв</label>
+                    <textarea name="reviewText" id="reviewText"></textarea>
+                    
+                </div>
+                <div class="modal-form-input">
+                    <input type="submit" placeholder="Отправить">
+                </div>
+                
+            </form>
+            <div class="success-message" id="success-message" style="display:none;">
+                <p class="title">Спасибо!</p>
+                <p class="subtitle">После модерации Ваш отзыв появится на сайте</p>
+                <div class="contact">
+                    <a class="circle" href="https://wa.me/79384796301">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                    <a class="circle" href="tel:+79384796301">
+                        <i class="fas fa-phone-alt"></i>
+                    </a>
+                </div>
+                <p class="subtitle">присоединяйтесь к нашм в ВК и телеграмм</p>
+                <div class="contact">
+                    <a class="circle" href="#">
+                        <i class="fa-brands fa-telegram"></i> 
+                    </a>
+                    <a class="circle" href="tel:+79384796301">
+                        <i class="fab fa-vk"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-logo">
+                <a class="footer-logo-link" href="#">
+                    <img src="{% static 'img/logotype2.png' %}" alt="logo">
+                    <h6>Детский футбольный клуб "Атлант"</h6>
+                </a>
+                {% for company in company %}
+                    <div class="footer-icons">
+                        <a href="{{ company.vk }}">
+                            <i class="fa-brands fa-vk"></i>
+                        </a>
+                        <a href="{{ company.telegramm }}">
+                            <i class="fa-brands fa-telegram"></i>
+                        </a>
+                        <a href="{{ company.whatsapp }}">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                    </div>
+                    </div>
+                    <div class="footer-body">
+                        <div class="footer-body-explorer">
+                            <p>Навигация:</p>
+                            <nav>
+                                <ul>
+                                    <li class="header-effect block" ><a href="#about">О нас</a></li>
+                                    <li class="header-effect block"><a href="#schedule">Расписание</a></li>
+                                    <li class="header-effect block"><a href="#blog">Новости</a></li>
+                                    <li class="header-effect block"><a href="#reviews">Отзывы</a></li>
+                                    <li class="header-effect block"><a href="#trainer">Контакты</a></li>
+                                    <li class="header-effect block"><a href="#">404</a></li>
+                                    <li class="header-effect block"><a href="#">Политика конфиденциальности</a></li>
+                                    <li class="header-effect block"><a href="#">Лицензионное соглашение</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="footer-contact">
+                            <div class="footer-address">
+                                <h6>Контакты:</h6>
+                                <p class="header-list-item">{{ company.address }}</p>
+                                <a class="header-list-item" href="tel:{{ company.phone }}">{{ company.phone }}</a>
+                                <div class="footer-working">
+                                    <button class="scroll-to-top" id="scrollToTopBtn" onclick="scrollToTop()">
+                                        <i class="fas fa-chevron-up"></i>
+                                    </button>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+        </div>
+        <div class="copyright">
+           &copy; &nbsp;&nbsp;2024 &nbsp;&nbsp; Детский футбольный клуб "Атлант" &nbsp;&nbsp; &nbsp;&nbsp; 
+        </div>
+    </footer> 
+
+    <script src="{% static 'script/script.js' %}"></script>
+    <script src="{% static 'script/openBlogDetail.js' %}"></script>
+    <script src="{% static 'script/mobilNav.js' %}"></script>
+    <script src="{% static 'script/scrollToTop.js' %}"></script>
+    <script src="{% static 'script/customModal.js' %}"></script>
+
+</body>
+</html>

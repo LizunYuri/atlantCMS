@@ -49,3 +49,20 @@ class SEOModel(models.Model):
         verbose_name = 'SEO'
         verbose_name_plural = 'Информация для поисковых систем'
 
+
+
+class FirstPageNews(models.Model):
+    title = models.CharField(max_length=150, 
+                             verbose_name='Название',
+                             help_text='Влияет на поисковую выдачу, Уникальное имя должно быть. Не больше 50 символов')
+    description = models.CharField(max_length=200,
+                               verbose_name='Текст',
+                               help_text='Не больше 200 символов. Важный элемент поисковой индексации. Должен быть связный текст, по нему поисковые роботы индексируют сайт')
+    def __str__(self):
+
+        return self.title
+
+    class Meta:
+        verbose_name = 'Новость'
+        verbose_name_plural = 'Новости первой страницы'
+

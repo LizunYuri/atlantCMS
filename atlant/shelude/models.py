@@ -38,14 +38,14 @@ class ScheduleModel(models.Model):
 
 class ClientModel(models.Model):
     name = models.CharField(max_length=100,
-                             verbose_name='Заголовок статьи',
+                             verbose_name='Имя',
                              help_text='Не больше 100 символов')
     phone = models.CharField(max_length=170,
-                                verbose_name='Подзаголовок статьи',
+                                verbose_name='номер телефона',
                                 help_text='Не больше 70 символов, обязательно к заполнению, используется для поисковой индексации',
                                 null=True)
     email = models.EmailField(
-                                verbose_name='Подзаголовок статьи',
+                                verbose_name='Адрес электронной почты',
                                 help_text='Не больше 70 символов, обязательно к заполнению, используется для поисковой индексации',
                                 null=True)
 
