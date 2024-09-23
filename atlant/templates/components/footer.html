@@ -1,0 +1,57 @@
+{% load static %}
+
+<footer class="footer" id="footer">
+    <div class="container">
+        <div class="footer-logo">
+            <a class="footer-logo-link" href="#">
+                <img src="{% static 'img/logotype2.png' %}" alt="logo">
+                <h6>Детский футбольный клуб "Атлант"</h6>
+            </a>
+            {% for company in company %}
+                <div class="footer-icons">
+                    <a aria-label="ВК" href="{{ company.vk }}">
+                        <i class="fa-brands fa-vk"></i>
+                    </a>
+                    <a aria-label="Телеграм" href="{{ company.telegramm }}">
+                        <i class="fa-brands fa-telegram"></i>
+                    </a>
+                    <a aria-label="Вацап" href="{{ company.whatsapp }}">
+                        <i class="fa-brands fa-whatsapp"></i>
+                    </a>
+                </div>
+                </div>
+                <div class="footer-body">
+                    <div class="footer-body-explorer">
+                        <p>Навигация:</p>
+                        <nav>
+                            <ul>
+                                <li class="header-effect block" ><a href="#about" aria-label="о нас" >О нас</a></li>
+                                <li class="header-effect block"><a href="#schedule" aria-label="расписание тренировок" >Расписание</a></li>
+                                <li class="header-effect block"><a href="#blog" aria-label="новости" >Новости</a></li>
+                                <li class="header-effect block"><a href="#reviews" aria-label="отзывы" >Отзывы</a></li>
+                                <li class="header-effect block"><a href="#trainer" aria-label="Контакты" >Контакты</a></li>
+                                <li class="header-effect block"><a href="{% url 'politic' %}" aria-label="Политика" >Политика конфиденциальности</a></li>
+                                <li class="header-effect block"><a href="{% url 'license' %}" aria-label="Лицензия" >Лицензионное соглашение</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="footer-contact">
+                        <div class="footer-address">
+                            <h6>Контакты:</h6>
+                            <p class="header-list-item">{{ company.address }}</p>
+                            <a class="header-list-item" href="tel:{{ company.phone }}">{{ company.phone }}</a>
+                            <div class="footer-working">
+                                <button class="scroll-to-top" id="scrollToTopBtn" onclick="scrollToTop()">
+                                    <i class="fas fa-chevron-up"></i>
+                                </button>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+    </div>
+    <div class="copyright">
+       &copy; &nbsp;&nbsp;2024 &nbsp;&nbsp; Детский футбольный клуб "Атлант" &nbsp;&nbsp; &nbsp;&nbsp; 
+    </div>
+</footer> 

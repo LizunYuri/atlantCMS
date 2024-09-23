@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CompanyModel, SEOModel, FirstPageNews
+from .models import CompanyModel, SEOModel, FirstPageNews, EmailSettings
 
 @admin.register(CompanyModel)
 class CompanyModelAdmin(admin.ModelAdmin):
@@ -27,4 +27,11 @@ class FirstPageNewsAdmin(admin.ModelAdmin):
 
     def has_add_permission(self, request):
         return FirstPageNews.objects.count() < 3
- 
+
+
+@admin.register(EmailSettings)
+class EmailSettingsAdmin(admin.ModelAdmin):
+    list_display = ('email', )
+
+    def has_add_permission(self, request):
+        return EmailSettings.objects.count() < 1

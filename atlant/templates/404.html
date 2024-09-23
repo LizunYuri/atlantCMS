@@ -1,0 +1,48 @@
+{% extends "components/base.html" %}
+{% load static %}
+
+{% block content %}
+<main>
+    <section class="main-screen">
+        <div class="main-screen-bg">
+            <div class="container main-screen-container">
+                <div class="row  main-screen-content">
+                    <div class="col-xl-6 col-lg-12 main-screen-right">
+                        {% for news in firstNews %}
+                            <div class="main-screen-right-card card-child cycle-objects-card">
+                                <div class="left"></div>
+                                <div class="right">
+                                    <h3>404</h3>
+                                    <p>Страница не найдена</p>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="col-xl-6 col-lg-12 main-screen-left">
+                        <div class="logo-main cycle-objects-img">
+                            <img src="{% static 'img/logotype2.png' %}" alt="logo">
+                        </div>
+                        <h1 class="cycle-objects-subtitle">Детский футбольный клуб</h1>
+                        <h2 class="cycle-objects-title">Атлант</h2>
+
+                        <div class="footer-icons">
+                            {% for company in company %}
+                                <a href="{{ company.vk }}">
+                                    <i class="fa-brands fa-vk"></i>
+                                </a>
+                                <a href="{{ company.telegramm }}">
+                                    <i class="fa-brands fa-telegram"></i>
+                                </a>
+                                <a href="{{ company.whatsapp }}">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% endblock %}

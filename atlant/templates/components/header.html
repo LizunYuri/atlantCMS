@@ -1,0 +1,56 @@
+{% load static %}
+
+<header class="header" id="header">
+    <div class="container header-container">
+           <a  class="logo-main-header cycle-objects-img" href="#">
+                <img src="{% static 'img/logotype2.png' %}" alt="logo">
+            </a>
+        <nav>
+            <ul class="header-list">
+                <li class="header-list-item header-effect block item-animation-objects" ><a href="#about" aria-label="о нас" >О нас</a></li>
+                <li class="header-list-item header-effect block item-animation-objects"><a href="#schedule" aria-label="расписание занятий" >Расписание</a></li>
+                <li class="header-list-item header-effect block item-animation-objects"><a href="#blog" aria-label="новости" >Новости</a></li>
+                <li class="header-list-item header-effect block item-animation-objects"><a href="#reviews"aria-label="отзывы" >Отзывы</a></li>
+                <li class="header-list-item header-effect block item-animation-objects"><a href="#trainer" aria-label="контакты" >Контакты</a></li>
+            </ul>
+        </nav>
+        <div class="logotype-address">
+            <button aria-label="Записаться на тренировку" class="custom-btn-training" onclick="openModalWindow()">
+                <p>Записаться<br> на тренировку</p>
+            </button>
+            <div class="logotype-address-block">
+                {% for company in company %}
+                    <a class="header-list-item" href="tel:{{ company.phone }}">{{ company.phone }}</a>
+                    <a class="header-list-item" href="mailto:{{ company.e_mail }}">{{ company.e_mail }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="container mobil-visible">
+            <div onclick="burgerClick()"  class="burger">
+                <div class="toggle toggle-first" id="toggle-first"></div>
+                <div class="toggle toggle-center"></div>
+                <div class="toggle toggle-last"></div>
+        </div>
+
+    </div>
+    
+    <div class="body-nav">
+            <div class="body-nav-menu">
+                <nav class="nav-animation">
+                    <ul>
+                        <li class='body-nav-menu-list item-animation-objects'><a href="#about" aria-label="О нас" >О нас</a></li>
+                        <li class='body-nav-menu-list item-animation-objects'><a href="#schedule"aria-label="Расписание тренировок" >Расписание</a></li> 
+                        <li class='body-nav-menu-list item-animation-objects'><a href="#blog" aria-label="Новости компании" >Новости</a></li>
+                        <li class='body-nav-menu-list item-animation-objects'><a href="#reviews" aria-label="отзывы" >Отзывы</a></li>
+                        <li class='body-nav-menu-list item-animation-objects'><a href="#trainer" aria-label="Контакты" >Контакты</a></li>
+                    </ul>
+                </nav>
+                <div class="header-list logotype-mobil nav-animation">
+                    <button aria-label="Записаться на тренировку"  class="custom-btn-training" onclick="openModalWindow()">
+                        <p>Записаться<br> на тренировку</p>
+                    </button>
+                </div> 
+            </div>
+    </div>
+</header>

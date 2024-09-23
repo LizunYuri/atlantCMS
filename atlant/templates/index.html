@@ -1,86 +1,7 @@
+{% extends "components/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="https://kit.fontawesome.com/741d6d6a0a.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}">
-    <link rel="icon" href="{% static 'favicons/favicon.ico' %}">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-    <script>
-        window.submitUrl = "{% url 'submit_client_form' %}";
-    </script>
-    {% for seo in seo %}
-        <meta name="description" content="{{ seo.description }}">
-        <meta name="keywords" content="{{ seo.keywords }}">
-        <meta name="author" content="b_root">
-        <meta property="og:title" content="{{ seo.title }}">
-        <meta property="og:description" content="{{ seo.description }}">
-        <meta property="og:type" content="website">
-        <title>{{ seo.title }}</title>
-    {% endfor %}
-</head>
-<body>
-    <header class="header" id="header">
-        <div class="container header-container">
-               <a  class="logo-main-header cycle-objects-img" href="#">
-                    <img src="{% static 'img/logotype2.png' %}" alt="logo">
-                </a>
-            <nav>
-                <ul class="header-list">
-                    <li class="header-list-item header-effect block item-animation-objects" ><a href="#about">О нас</a></li>
-                    <li class="header-list-item header-effect block item-animation-objects"><a href="#schedule">Расписание</a></li>
-                    <li class="header-list-item header-effect block item-animation-objects"><a href="#blog">Новости</a></li>
-                    <li class="header-list-item header-effect block item-animation-objects"><a href="#reviews">Отзывы</a></li>
-                    <li class="header-list-item header-effect block item-animation-objects"><a href="#trainer">Контакты</a></li>
-                </ul>
-            </nav>
-            <div class="logotype-address">
-                <button class="custom-btn-training" onclick="openModalWindow()">
-                    <p>Записаться<br> на тренировку</p>
-                </button>
-                <div class="logotype-address-block">
-                    {% for company in company %}
-                        <a class="header-list-item" href="tel:{{ company.phone }}">{{ company.phone }}</a>
-                        <a class="header-list-item" href="mailto:{{ company.e_mail }}">{{ company.e_mail }}</a>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-        <div class="container mobil-visible">
-                <div onclick="burgerClick()"  class="burger">
-                    <div class="toggle toggle-first" id="toggle-first"></div>
-                    <div class="toggle toggle-center"></div>
-                    <div class="toggle toggle-last"></div>
-            </div>
 
-        </div>
-        
-        <div class="body-nav">
-                <div class="body-nav-menu">
-                    <nav class="nav-animation">
-                        <ul>
-                            <li class='body-nav-menu-list item-animation-objects'><a href="#about">О нас</a></li>
-                            <li class='body-nav-menu-list item-animation-objects'><a href="#schedule">Расписание</a></li> 
-                            <li class='body-nav-menu-list item-animation-objects'><a href="#blog">Новости</a></li>
-                            <li class='body-nav-menu-list item-animation-objects'><a href="#reviews">Отзывы</a></li>
-                            <li class='body-nav-menu-list item-animation-objects'><a href="#trainer">Контакты</a></li>
-                        </ul>
-                    </nav>
-                    <div class="header-list logotype-mobil nav-animation">
-                        <button class="custom-btn-training" onclick="openModalWindow()">
-                            <p>Записаться<br> на тренировку</p>
-                        </button>
-                    </div> 
-                </div>
-        </div>
-    </header>
+{% block content %}
     <main>
         <section class="main-screen">
             <div class="main-screen-bg">
@@ -104,7 +25,7 @@
                             <h1 class="cycle-objects-subtitle">Детский футбольный клуб</h1>
                             <h2 class="cycle-objects-title">Атлант</h2>
                             <div class="custom-modal-btn">
-                                <button onclick="openModalWindow()">
+                                <button aria-label="Записаться на тренировку" onclick="openModalWindow()">
                                     <p><span>GO! </span>на тренировку</p>
                                 </button>
                             </div>
@@ -290,7 +211,7 @@
                         {% endfor %}                          
                     </div>
                 </div>
-                <button onclick="openModalWindowReview()" class="custom-btn">Оставить отзыв</button>
+                <button onclick="openModalWindowReview()" class="custom-btn" aria-label="Оставить отзыв">Оставить отзыв</button>
             </div>
         </section>
         <section class="trainer" id="trainer">
@@ -306,8 +227,8 @@
                         <div class="trainer-content-card-text">
                             {% for company in company %}
                                 <h5>{{ company.address }}</h5>
-                                <a class="" href="tel:{{ company.phone }}">Телефон: {{ company.phone }}</a>
-                                <a class="" href="mailto:{{company.email}}">e-mail: {{ company.email }}</a> 
+                                <a  href="tel:{{ company.phone }}">Телефон: {{ company.phone }}</a>
+                                <a href="mailto:{{company.email}}">e-mail: {{ company.email }}</a> 
                             {% endfor %}
                         </div>
                     </div>
@@ -321,7 +242,7 @@
             <div  style="width: 100%; height: 100%; display: flex;" id="blog-detail">
             
             </div>
-            <button class="blog-detail-btn">закрыть</button>
+            <button class="blog-detail-btn" aria-label="Закрыть модальное окно">закрыть</button>
         </div>
         
     </div>
@@ -343,27 +264,23 @@
                     <input placeholder="+7(9xx)xxx-xx-xx" type="text" name="phone" id='phone'>
                 </div>
                 <div class="modal-form-input">
-                    <label for="userSity">Адрес электронной почты</label>
-                    <input placeholder="напр. info@atlant.ru" type="email" name="email" id="email">
-                </div>
-                <div class="modal-form-input">
                     <input type="submit" placeholder="Отправить">
                 </div>
                 
             </form>
-            <div class="success-message" id="success-message" style="display:flex;">
-                
-                <p class="page-subtitle">Не хотите ждать пока мы Вам перезвоним?</p>
+            <div class="success-message" id="success-message" style="display:none;">
+                <h6 class="page-subtitle text">В ближайшее время мы Вам перезвоним<h6>
+
                 {% for company in company %}
-                <p class="page-subtitle">присоединяйтесь к нашм в ВК и телеграмм</p>
-                    <div class="footer-icons">
-                        <a href="{{ company.vk }}">
+                <p class="page-subtitle text">Присоединяйтесь к нашм в ВК и телеграмм</p>
+                    <div class="success-icons">
+                        <a aria-label="ВК" href="{{ company.vk }}">
                             <i class="fa-brands fa-vk"></i>
                         </a>
-                        <a href="{{ company.telegramm }}">
+                        <a aria-label="Телеграм" href="{{ company.telegramm }}">
                             <i class="fa-brands fa-telegram"></i>
                         </a>
-                        <a href="{{ company.whatsapp }}">
+                        <a aria-label="Вацап" href="{{ company.whatsapp }}">
                             <i class="fa-brands fa-whatsapp"></i>
                         </a>
                     </div>
@@ -372,21 +289,22 @@
         </div>
     </div>
 
+
     <div class="custom-modal modal-none" id="custom-modal-review">
         <div class="body">
             <p class="closed-review">+</p>
-            <form class="modal-form" id="review-form" action="#" data-action-url="#">
-                
+            <form class="modal-form" id="review-form" action="javascript:void(0);" method="POST">
+                {% csrf_token %}
             <div class="title">
                 <h5 class="modal-title">Оставить отзыв</h5>
             </div>
                 <div class="modal-form-input">
-                    <label for="userName">Ваше имя</label>
-                    <input placeholder="напр. Иван Иванович" type="text" name="userName" id="userName" required>
+                    <label for="name">Ваше имя</label>
+                    <input placeholder="напр. Иван Иванович" type="text" name="name-review" id="name-review" required>
                 </div>
                 <div class="modal-form-input">
-                    <label for="userPhone">Ваш отзыв</label>
-                    <textarea name="reviewText" id="reviewText"></textarea>
+                    <label for="text">Ваш отзыв</label>
+                    <textarea name="text-review" id="text-review"></textarea>
                     
                 </div>
                 <div class="modal-form-input">
@@ -394,92 +312,24 @@
                 </div>
                 
             </form>
-            <div class="success-message" id="success-message" style="display:none;">
-                <p class="title">Спасибо!</p>
-                <p class="subtitle">После модерации Ваш отзыв появится на сайте</p>
-                <div class="contact">
-                    <a class="circle" href="https://wa.me/79384796301">
-                        <i class="fa-brands fa-whatsapp"></i>
-                    </a>
-                    <a class="circle" href="tel:+79384796301">
-                        <i class="fas fa-phone-alt"></i>
-                    </a>
-                </div>
-                <p class="subtitle">присоединяйтесь к нашм в ВК и телеграмм</p>
-                <div class="contact">
-                    <a class="circle" href="#">
-                        <i class="fa-brands fa-telegram"></i> 
-                    </a>
-                    <a class="circle" href="tel:+79384796301">
-                        <i class="fab fa-vk"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
+            <div class="success-message" id="success-message-review" style="display:none;">
+                <h6 class="page-subtitle text">После модерации Ваш отзыв появится на сайте<h6>
 
-    <footer class="footer" id="footer">
-        <div class="container">
-            <div class="footer-logo">
-                <a class="footer-logo-link" href="#">
-                    <img src="{% static 'img/logotype2.png' %}" alt="logo">
-                    <h6>Детский футбольный клуб "Атлант"</h6>
-                </a>
                 {% for company in company %}
-                    <div class="footer-icons">
-                        <a href="{{ company.vk }}">
+                <p class="page-subtitle text">Присоединяйтесь к нашм в ВК и телеграм</p>
+                    <div class="success-icons">
+                        <a aria-label="ВК" href="{{ company.vk }}">
                             <i class="fa-brands fa-vk"></i>
                         </a>
-                        <a href="{{ company.telegramm }}">
+                        <a aria-label="Телеграм" href="{{ company.telegramm }}">
                             <i class="fa-brands fa-telegram"></i>
                         </a>
-                        <a href="{{ company.whatsapp }}">
+                        <a aria-label="Вацап" href="{{ company.whatsapp }}">
                             <i class="fa-brands fa-whatsapp"></i>
                         </a>
                     </div>
-                    </div>
-                    <div class="footer-body">
-                        <div class="footer-body-explorer">
-                            <p>Навигация:</p>
-                            <nav>
-                                <ul>
-                                    <li class="header-effect block" ><a href="#about">О нас</a></li>
-                                    <li class="header-effect block"><a href="#schedule">Расписание</a></li>
-                                    <li class="header-effect block"><a href="#blog">Новости</a></li>
-                                    <li class="header-effect block"><a href="#reviews">Отзывы</a></li>
-                                    <li class="header-effect block"><a href="#trainer">Контакты</a></li>
-                                    <li class="header-effect block"><a href="#">404</a></li>
-                                    <li class="header-effect block"><a href="#">Политика конфиденциальности</a></li>
-                                    <li class="header-effect block"><a href="#">Лицензионное соглашение</a></li>
-                                </ul>
-                            </nav>
-                        </div>
-                        <div class="footer-contact">
-                            <div class="footer-address">
-                                <h6>Контакты:</h6>
-                                <p class="header-list-item">{{ company.address }}</p>
-                                <a class="header-list-item" href="tel:{{ company.phone }}">{{ company.phone }}</a>
-                                <div class="footer-working">
-                                    <button class="scroll-to-top" id="scrollToTopBtn" onclick="scrollToTop()">
-                                        <i class="fas fa-chevron-up"></i>
-                                    </button>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
                 {% endfor %}
+            </div>
         </div>
-        <div class="copyright">
-           &copy; &nbsp;&nbsp;2024 &nbsp;&nbsp; Детский футбольный клуб "Атлант" &nbsp;&nbsp; &nbsp;&nbsp; 
-        </div>
-    </footer> 
-
-    <script src="{% static 'script/script.js' %}"></script>
-    <script src="{% static 'script/openBlogDetail.js' %}"></script>
-    <script src="{% static 'script/mobilNav.js' %}"></script>
-    <script src="{% static 'script/scrollToTop.js' %}"></script>
-    <script src="{% static 'script/customModal.js' %}"></script>
-
-</body>
-</html>
+    </div>
+{% endblock %}

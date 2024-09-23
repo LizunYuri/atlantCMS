@@ -40,6 +40,21 @@ class SEOModel(models.Model):
     keywords = models.CharField(max_length=250,
                                verbose_name='Ключевые слова',
                                help_text='Указываетя через запятую. Не больше 250 символов. Устаревший элемент, не влияет на поисковую выдачу. Но учавствует в формировании семантического ядра')
+    metrika = models.TextField(verbose_name='Счетчик яндекс Метрики',
+                               null=True,
+                               default='',
+                               help_text=' (Скрипт) Инструкция по получению счетчика https://yandex.ru/support/metrica/general/creating-counter.html')
+    webmaster_yandex = models.TextField(verbose_name='Вебмастер Яндекс',
+                                 help_text='(Meta-тег) https://yandex.ru/support/webmaster/service/quick-start.html',
+                                 null=True,
+                                 default='')
+    canonical_url = models.CharField(verbose_name='Канонический url',
+                                     max_length=200,
+                                     help_text='')
+    google_console = models.TextField(verbose_name='Search Console Google',
+                                      help_text='Инструкция по подключению https://support.google.com/webmasters/answer/9008080?sjid=5167314692249351332-AP#meta_tag_verification',
+                                      default='',
+                                      null=True)
 
     def __str__(self):
 
@@ -66,3 +81,13 @@ class FirstPageNews(models.Model):
         verbose_name = 'Новость'
         verbose_name_plural = 'Новости первой страницы'
 
+
+
+class EmailSettings(models.Model):
+    email = models.EmailField(verbose_name="Email для получения отзывов и данных клиентов")
+
+    def __str__(self):
+        return self.email
+    class Meta:
+        verbose_name = 'адрес'
+        verbose_name_plural = 'Адрес для получения информации с сайта'

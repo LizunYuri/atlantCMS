@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-f2sqrss84x-b9aac7w*in9z!u*78pxz@0(z_51gd24q!7qs&h*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -136,3 +136,14 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Настройки email
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = 'your-email@gmail.com'  # Ваш Gmail
+# EMAIL_HOST_PASSWORD = 'your-password'     # Пароль приложения или ваш Gmail пароль
+# DEFAULT_FROM_EMAIL = 'your-email@gmail.com'

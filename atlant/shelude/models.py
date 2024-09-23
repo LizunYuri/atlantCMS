@@ -44,10 +44,7 @@ class ClientModel(models.Model):
                                 verbose_name='номер телефона',
                                 help_text='Не больше 70 символов, обязательно к заполнению, используется для поисковой индексации',
                                 null=True)
-    email = models.EmailField(
-                                verbose_name='Адрес электронной почты',
-                                help_text='Не больше 70 символов, обязательно к заполнению, используется для поисковой индексации',
-                                null=True)
+
 
     def __str__(self):
         return self.name

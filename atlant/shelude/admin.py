@@ -10,5 +10,5 @@ class SheludeModelAdmin(admin.ModelAdmin):
 @admin.register(ClientModel)
 class ClientModelAdmin(admin.ModelAdmin):
     list_display = ('name', 'phone')
-    search_fields = ('name', 'phone', 'email')
-    list_filter = ('name', 'phone', 'email')
+    search_fields = ('name', 'phone')
+    list_filter = ('name', 'phone')
